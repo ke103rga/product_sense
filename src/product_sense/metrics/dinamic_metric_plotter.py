@@ -77,7 +77,7 @@ class DinamicMetricPlotter:
             fig.update_layout(
                 xaxis_title=dt_col,
                 yaxis_title=value_col,
-                barmode='group' if mode == 'bar' else 'overlay',  # Установка режима для столбчатых графиков
+                barmode='group' if mode == 'bar' else 'overlay',
             )
             fig.show()
 
