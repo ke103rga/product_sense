@@ -51,7 +51,7 @@ class TimeSeriesAnalyzer:
     @staticmethod
     def trend_line(data: pd.Series) -> pd.Series:
         """
-        Calculates the trend line for a time series. Calculates by fittinf OLS regression to the data.
+        Calculates the trend line for a time series. Calculates by fit OLS regression to the data.
         and computing the linear regression func by the original x values.
         
         Args:
@@ -80,10 +80,10 @@ class TimeSeriesAnalyzer:
 
         # 1. Linear regression slope
         x = np.arange(len(data))
-        slope, intercept = np.polyfit(x, data, 1)  # Получаем наклон и пересечение
+        slope, intercept = np.polyfit(x, data, 1)
         results.append(['Linear regression slope', slope])
         
-        # 2. Correaltion with increasing time series
+        # 2. Correlation with increasing time series
         increasing_series = np.arange(1, len(data) + 1)  
         correlation = np.corrcoef(data, increasing_series)[0, 1]  
         results.append(['Corr with increasing ts', correlation])
@@ -96,7 +96,8 @@ class TimeSeriesAnalyzer:
     def analyze(data: pd.Series, window_sizes: List[int] = None, lags: int = None, 
                 trend_line: bool = False) -> TimeSeriesAnalysisResult:
         """
-        Analyzes the time series by applying smoothing, calculating autocorrelation, and optionally evaluating the trend line.
+        Analyzes the time series by applying smoothing, calculating autocorrelation,
+        and optionally evaluating the trend line.
 
         Args:
             data (pd.Series): The time series to analyze.
