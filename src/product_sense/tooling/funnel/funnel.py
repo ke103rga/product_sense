@@ -175,7 +175,8 @@ class Funnel:
             stages: List[Union[str, List[str]]],
             funnel_type: FunnelTypes = 'open',
             stages_names: Optional[List[str]] = None,
-            inside_session: bool = False,
+            # temporary interface without `inside_session` param
+            # inside_session: bool = False,
             segments: Optional[Iterable] = None,
             segments_names: Optional[Iterable] = None
     ) -> pd.DataFrame:
@@ -187,7 +188,6 @@ class Funnel:
             stages (List[Union[str, List[str]]]): The stages defined for the funnel.
             funnel_type (FunnelTypes, optional): The type of funnel to build ('open' or 'closed'). Defaults to 'open'.
             stages_names (Optional[List[str]], optional): The names for the stages. Defaults to None.
-            inside_session (bool, optional): Indicator if the funnel should be calculated inside a session. Defaults to False.
             segments (Optional[Iterable], optional): The segments to analyze. List of lists of indexes in data
             to separate different segments of users. Defaults to None.
             segments_names (Optional[Iterable], optional): The names for the segments. Defaults to None.
@@ -198,6 +198,8 @@ class Funnel:
         Raises:
             ValueError: If any of the parameters are invalid.
         """
+        # Temporary declaration until release of `inside_session` calculation logic
+        inside_session = False
         self._check_fit_params(funnel_type, data, stages, stages_names,
                                inside_session, segments, segments_names)
 
@@ -388,31 +390,3 @@ class Funnel:
             ))
 
         fig.show()
-
-
-def t():
-    data = pd.read_csv("D:/diplom/simple_shop.csv")
-    users = data['user_id'].unique()
-    cities = [random.choice(['NY', 'SF', 'LA']) for _ in range(len(users))]
-    users = pd.DataFrame({'user_id': users, 'city': cities})
-
-    data = data.merge(users, on='user_id', how='inner')
-
-    cols_schema = {
-        'user_id': 'user_id',
-        'event_name': 'event',
-        'event_timestamp': 'timestamp'
-    }
-
-    ef = EventFrame(data, cols_schema=cols_schema, prepare=True)
-
-    start_end_events_preprocessor = AddStartEndEventsPreprocessor()
-    split_sessions_preprocessor = SplitSessionsPreprocessor(timeout=(15, 'm'))
-    ef = start_end_events_preprocessor.apply(ef)
-    ef = split_sessions_preprocessor.apply(ef)
-
-    funnel = Funnel()
-    funnel.fit(ef, funnel_type='closed', stages=[['product1', 'product2'], 'cart', 'payment_done'])
-
-
-# t()
