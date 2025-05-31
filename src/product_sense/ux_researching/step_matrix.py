@@ -75,8 +75,8 @@ class StepMatrix:
         data, cols_schema = self._get_data_and_schema(data=data)
         user_col = cols_schema.user_id
 
-        segment1_data = data[data[user_col].isin(segment1)]
-        segment2_data = data[data[user_col].isin(segment2)]
+        segment1_data = data.loc[segment1]
+        segment2_data = data.loc[segment2]
 
         step_matrix1 = self._fit(segment1_data, cols_schema, max_steps=max_steps, weight_col=weight_col)
         step_matrix2 = self._fit(segment2_data, cols_schema, max_steps=max_steps, weight_col=weight_col)
