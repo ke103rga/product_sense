@@ -184,7 +184,7 @@ class EventFrameColsSchema:
     @custom_cols.setter
     def custom_cols(self, value: List[str]):
         if not isinstance(value, list):
-            raise ValueError("custom_cols должно быть списком.")
+            raise ValueError("custom_cols should be a list.")
         self._custom_cols = value
 
     def __repr__(self):
@@ -200,6 +200,7 @@ class EventFrameColsSchema:
                 f"session_id={self.session_id}, "
                 f"cohort_group={self.cohort_group}, "
                 f"custom_cols={self.custom_cols})")
+
 
 
 
