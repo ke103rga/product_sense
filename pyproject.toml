@@ -48,6 +48,22 @@ dependencies = [
     "tzdata>=2024.2",
 ]
 
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["product_sense*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+product_sense = [
+    "src/product_sense/datasets/*.csv",
+    "src/product_sense/datasets/*.json",
+    "src/product_sense/datasets/*.feather"
+]
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
+
 [project.urls]
 "Homepage" = "https://github.com/your_username/your_library_name" # Замените URL
 "Bug Tracker" = "https://github.com/your_username/your_library_name/issues" # Замените URL
