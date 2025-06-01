@@ -30,7 +30,7 @@ class StepMatrix:
         self._plot(step_matrix, rare_events, max_steps=max_steps, title=title, target_events=target_events)
 
     def plot_difference(self, segment1, segment2, data: Optional[EventFrame] = None, max_steps: int = 10,
-                        threshold: float = 0.05, weight_col: str = '', target_events: List[str] = None,
+                        threshold: float = 0.0, weight_col: str = '', target_events: List[str] = None,
                         title: str = '') -> None:
         difference_matrix = self._fit_matrix_difference(
             segment1,
@@ -50,7 +50,7 @@ class StepMatrix:
         return thresholded_step_matrix
 
     def fit_difference(self, segment1, segment2, data: Optional[EventFrame] = None, max_steps: int = 10,
-                       threshold: float = 0.05, weight_col: str = '') -> pd.DataFrame:
+                       threshold: float = 0.0, weight_col: str = '') -> pd.DataFrame:
         difference_matrix = self._fit_matrix_difference(segment1, segment2, data=data, max_steps=max_steps,
                                                         weight_col=weight_col)
         thresholded_difference_matrix, _ = self._threshold_events(difference_matrix, threshold)
