@@ -358,7 +358,7 @@ class Funnel:
              stages: List[Union[str, List[str]]],
              funnel_type: FunnelTypes = 'open',
              stages_names: Optional[List[str]] = None,
-             inside_session: bool = False,
+             # inside_session: bool = False,
              segments: Optional[Iterable] = None,
              segments_names: Optional[Iterable] = None
              ) -> None:
@@ -377,7 +377,7 @@ class Funnel:
         Returns:
             None: Displays the funnel plot.
         """
-        funnel_data = self.fit(data, stages, funnel_type, stages_names, inside_session, segments, segments_names)
+        funnel_data = self.fit(data, stages, funnel_type, stages_names, segments, segments_names)
         fig = go.Figure()
         for segment_name in funnel_data['segment'].unique():
             segment_data = funnel_data[funnel_data['segment'] == segment_name]
