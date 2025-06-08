@@ -242,7 +242,7 @@ class StepSankey:
         ]
         # convert HEX to RGB
         palette = []
-        for color in palette_hex:
+        for color in palette_hex[:len(all_events)]:
             rgb_color = tuple(int(color[i: i + 2], 16) for i in (0, 2, 4))
             palette.append(rgb_color)
 
