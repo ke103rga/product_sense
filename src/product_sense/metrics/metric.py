@@ -369,6 +369,8 @@ class MetricDinamic(_Metric):
             formula_kwargs=formula_kwargs,
         )
 
+        metric_data[self.name] = metric_data[self.name].astype(float)
+
         new_dt_col = self.compute_params.period_name
         dmp.plot(
             metric_data,
