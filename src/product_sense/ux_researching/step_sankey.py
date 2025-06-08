@@ -43,7 +43,7 @@ class StepSankey:
                 pad=15,
                 thickness=20,
                 line=dict(color="black", width=0.5),
-                label=nodes.step.astype(str) + nodes[event_col].astype(str),
+                label=nodes[event_col].astype(str),
                 customdata=nodes.desc,
                 hovertemplate='%{customdata}',
                 color=nodes.color
